@@ -33,7 +33,7 @@
 		FAEFE13A2D775C0500F4ABF3 /* Exceptions for "firstApp" folder in "firstApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Helpers/Info.plist,
 			);
 			target = FAEFE1112D775C0400F4ABF3 /* firstApp */;
 		};
@@ -273,7 +273,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BRPRK2DFUY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = firstApp/Info.plist;
+				INFOPLIST_FILE = firstApp/Helpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -305,7 +305,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BRPRK2DFUY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = firstApp/Info.plist;
+				INFOPLIST_FILE = firstApp/Helpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
