@@ -67,10 +67,7 @@ class ViewController: UIViewController {
         clearData.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.addSubview(clearData)
         
-        
-        
-        
-        
+     
     }
 
 
