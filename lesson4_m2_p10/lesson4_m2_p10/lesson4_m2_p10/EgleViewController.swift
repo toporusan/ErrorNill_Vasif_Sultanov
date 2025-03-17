@@ -77,15 +77,22 @@ class EgleViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .greenProj
         $0.layer.cornerRadius = 20
+        $0.addAction(redirectToAnotherViewController, for: .primaryActionTriggered)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
-        
     }(UIButton())
+    
+    
+    lazy var redirectToAnotherViewController  = UIAction{ _ in
+        let vc = SecondViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.backButtonTitle = "Назад"
         
         
         view.addSubviews(girlImg, lastNameLabel, mainView)
