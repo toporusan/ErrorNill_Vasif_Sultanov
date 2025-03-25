@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     // 1 массив данных
     // 2 таблица
     // 3 data source - > protocol под который подписываем класс с таблицей
@@ -16,33 +16,29 @@ class ViewController: UIViewController {
     //      4.1. указываем сколько ячеек , берем их из массива данных  1
     //      4.2. настроим конкретную  ячейку
     //      4.3. создать кастомную ячейку
-    
-    
+
     var dataArray: [DataStruct] = DataStruct.dataArray()
-    
+
     lazy var tableView: UITableView = {
         $0.dataSource = self
         $0.delegate = self
         $0.register(DataCell.self, forCellReuseIdentifier: "cell")
         $0.separatorStyle = .none
+        $0.backgroundColor = .white
         return $0
     }(UITableView(frame: view.frame, style: .insetGrouped))
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        
     }
-    
-
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArray.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DataCell else {
             return UITableViewCell()
@@ -51,8 +47,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.selectionStyle = .none
         let data = dataArray[indexPath.row]
         cell.configCell(data: data)
-        
+
         return cell
     }
-    
 }
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = dataArray[indexPath.row]
+        let detailsViewController = DetailsViewController(data: data)
+        navigationController?.pushViewController(detailsViewController, animated: true)
+        
+    }
+}
+
+extension UIView {
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
+    }
+}
+ 
