@@ -158,7 +158,7 @@ extension ViewController: UICollectionViewDataSource {
             
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .red
+            cell.backgroundColor = .green
             return cell
         }
     }
