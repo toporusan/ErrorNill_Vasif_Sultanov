@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Razrabotka_lesson4_m4_p10App: App {
+ 
     var body: some Scene {
         WindowGroup {
-            CoinMoneyMainView()
+            CoinMoneyMainView(viewModel: CoinMoneyMainViewModel())
         }
     }
 }

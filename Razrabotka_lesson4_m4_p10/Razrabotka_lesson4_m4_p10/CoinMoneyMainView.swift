@@ -10,31 +10,15 @@ import SwiftUI
 struct CoinMoneyMainView: View {
     
     let coinFetch = CoinFetch()
+    @ObservedObject var viewModel: CoinMoneyMainViewModel
     
-    let data: [Coin] = [
-        Coin(name: "Bitcoin", symbol: "BTC1", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC2", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC3", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC4", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC6", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-        Coin(name: "Bitcoin", symbol: "BTC6", current_price: 1.0090, image: "", atl_change_percentage: 5.4)
-    ]
-    
+
     var body: some View {
         VStack {
             TopBar()
             ScrollView{
                 LazyVStack(spacing: 20){
-                    ForEach(data, id: \.id) { d in
+                    ForEach(viewModel.items, id: \.id) { d in
                         CoinCellView(coin: d)
                     }
                 }
@@ -42,25 +26,24 @@ struct CoinMoneyMainView: View {
             }//.padding(.top, 10)
             
             Button {
-                coinFetch.fetchTopCoins(){data in
-                    
-                    for body in data {
-//                        guard let current = body else{
-//                            return
-//                        }
-                        print(body)
-                    }
-                    
-                }
+                viewModel.fetchItems()
+                viewModel.fetchImage()
+                
+                
             } label: {
                 Text("Fetch coin")
             }
 
         }
+        .onAppear(){
+            //viewModel.fetchItems()
+        }
         //.padding(.top,10)
+        
     }
+
 }
 
 #Preview {
-    CoinMoneyMainView()
+    CoinMoneyMainView(viewModel: CoinMoneyMainViewModel())
 }

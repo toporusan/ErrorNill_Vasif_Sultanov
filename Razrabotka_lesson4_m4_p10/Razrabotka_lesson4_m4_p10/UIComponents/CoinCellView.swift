@@ -50,12 +50,12 @@ struct CoinCellView: View {
             
         }
         .frame(width: 343, height: 68)
-        .background(Color.lightGray)
+        .background(Color.lightGrayR)
             .cornerRadius(20)
             .shadow(color: Color.cellShadow, radius: 5, x: 0, y: 6)
     }
-    
 }
+
 
 #Preview {
     let coinView = Coin(name: "Bitcoin", symbol: "BTC", current_price: 1.0090, image: "", atl_change_percentage: 5.4)
