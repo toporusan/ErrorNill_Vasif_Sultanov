@@ -22,8 +22,8 @@ class CoinFetch {
             components.queryItems = [
                 URLQueryItem(name: "vs_currency", value: "usd"),
                 URLQueryItem(name: "order", value: "market_cap_desc"),
-                URLQueryItem(name: "per_page", value: "10"),
-                URLQueryItem(name: "page", value: "1"),
+                //URLQueryItem(name: "per_page", value: "10"),
+                //URLQueryItem(name: "page", value: "1"),
                 URLQueryItem(name: "sparkline", value: "false")
             ]
         
@@ -50,7 +50,6 @@ class CoinFetch {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Ошибка запроса: \(error)")
-                
             }
             
             guard let data = data else {

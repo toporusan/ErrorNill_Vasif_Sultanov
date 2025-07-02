@@ -11,9 +11,11 @@ import UIKit
 class CoinMoneyMainViewModel: ObservableObject {
     @Published var items: [Coin] = []
     @Published var images: [UIImage] = []
-    
+
     var coinFetch = CoinFetch()
     var coinImageLoader = CoinImageLoader()
+
+    // MARK: Итемы
 
     func fetchItems() {
         coinFetch.fetchTopCoins { i in
@@ -27,6 +29,8 @@ class CoinMoneyMainViewModel: ObservableObject {
             }
         }
     }
+
+    // MARK: Картинки
 
     func fetchImage() {
         for image in items {
@@ -44,23 +48,3 @@ class CoinMoneyMainViewModel: ObservableObject {
         }
     }
 }
-
-//    func fetchItems() {
-//        items = [
-//            Coin(name: "Bitcoin", symbol: "BTC1", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC2", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC3", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC4", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC6", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC5", current_price: 1.0090, image: "", atl_change_percentage: 5.4),
-//            Coin(name: "Bitcoin", symbol: "BTC6", current_price: 1.0090, image: "", atl_change_percentage: 5.4)
-//        ]
-//    }

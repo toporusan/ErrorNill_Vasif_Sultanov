@@ -17,13 +17,18 @@ struct CoinMoneyMainView: View {
         VStack {
             TopBar()
             ScrollView{
+                
                 LazyVStack(spacing: 20){
                     ForEach(viewModel.items, id: \.id) { d in
                         CoinCellView(coin: d)
                     }
                 }
                 
-            }//.padding(.top, 10)
+                ForEach(viewModel.images, id: \.size){ image in
+                    
+                }
+                
+                    }//.padding(.top, 10)
             
             Button {
                 viewModel.fetchItems()
