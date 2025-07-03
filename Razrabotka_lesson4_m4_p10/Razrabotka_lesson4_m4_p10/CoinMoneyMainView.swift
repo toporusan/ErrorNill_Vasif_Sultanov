@@ -8,45 +8,37 @@
 import SwiftUI
 
 struct CoinMoneyMainView: View {
-    
     let coinFetch = CoinFetch()
     @ObservedObject var viewModel: CoinMoneyMainViewModel
-    
 
     var body: some View {
         VStack {
             TopBar()
-            ScrollView{
-                
-                LazyVStack(spacing: 20){
-                    ForEach(viewModel.items, id: \.id) { d in
-                        CoinCellView(coin: d)
+            ScrollView {
+                LazyVStack(spacing: 20) {
+                    ForEach(viewModel.items, id: \.coin.id) { coin in
+
+                        CoinCellView(coinCell: coin)
+                            .onAppear {
+                                if coin.coin.id == viewModel.items.last?.coin.id{
+                                    viewModel.fetchItems()
+                                }
+                            }
                     }
                 }
-                
-                ForEach(viewModel.images, id: \.size){ image in
-                    
-                }
-                
-                    }//.padding(.top, 10)
-            
+            }
+            .onAppear {
+            }
+
             Button {
+                viewModel.items = []
                 viewModel.fetchItems()
-                viewModel.fetchImage()
-                
-                
+
             } label: {
                 Text("Fetch coin")
             }
-
         }
-        .onAppear(){
-            //viewModel.fetchItems()
-        }
-        //.padding(.top,10)
-        
     }
-
 }
 
 #Preview {

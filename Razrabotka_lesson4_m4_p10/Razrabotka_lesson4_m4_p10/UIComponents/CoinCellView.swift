@@ -9,23 +9,23 @@ import SwiftUI
 
 struct CoinCellView: View {
     
-    let coin: Coin
+    let coinCell: CoinCell
     
 
     var body: some View {
         VStack(alignment: .leading){
             HStack{
                 HStack(spacing: 0) {
-                    Image(.bitcoin)
+                    Image(uiImage: coinCell.image ?? UIImage(named: "bitcoin")!)
                         .resizable()
                         .frame(width: 40, height: 40)
                         .padding(.horizontal, 16)
                     
                     VStack(alignment: .leading){
-                        Text(coin.name ?? "YYY")
+                        Text(coinCell.coin.name ?? "YYY")
                             .font(.system(size: 18))
                             .lineLimit(1)
-                        Text(coin.symbol ?? "YYY")
+                        Text(coinCell.coin.symbol ?? "YYY")
                             .foregroundStyle(Color.symbol)
                             .font(.system(size: 16))
                             .lineLimit(1)
@@ -34,10 +34,10 @@ struct CoinCellView: View {
                     Spacer()
                     
                     VStack(alignment: .trailing){
-                        Text("$\(coin.current_price ?? 0.0)")
+                        Text("$\(coinCell.coin.current_price ?? 0.0)")
                             .font(.system(size: 18))
                             .lineLimit(1)
-                        Text("\(coin.atl_change_percentage ?? 0.0)%")
+                        Text("\(coinCell.coin.atl_change_percentage ?? 0.0)%")
                             .foregroundStyle(Color.currentPrice)
                             .font(.system(size: 16))
                             .lineLimit(1)
@@ -58,9 +58,11 @@ struct CoinCellView: View {
 
 
 #Preview {
-    let coinView = Coin(name: "Bitcoin", symbol: "BTC", current_price: 1.0090, image: "", atl_change_percentage: 5.4)
+    let coinView = Coin(id: "bitcoin", name: "Bitcoin", symbol: "BTC", current_price: 1.0090, image: "", atl_change_percentage: 5.4)
+    let image = UIImage(resource: .bitcoin)
+    let coinCell = CoinCell(coin: coinView, image: image)
     
-    CoinCellView(coin: coinView)
+    CoinCellView(coinCell: coinCell)
 }
 
 

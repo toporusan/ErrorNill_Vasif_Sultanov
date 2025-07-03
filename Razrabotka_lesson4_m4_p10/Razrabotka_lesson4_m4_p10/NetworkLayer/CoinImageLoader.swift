@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import UIKit
+import UIKit.UIImage
 
 struct CoinImageLoader {
     
     
-    func loadImage(urlString: String, completion: @escaping (UIImage?) -> Void) {
+    func loadImage(imageURL: String, completion: @escaping (UIImage?) -> Void) {
             
-            guard let url = URL(string: urlString) else {
+            guard let url = URL(string: imageURL) else {
                 print("Неверный URL")
                 completion(nil)
                 return
@@ -31,10 +31,9 @@ struct CoinImageLoader {
                     completion(nil)
                     return
                 }
-
-                DispatchQueue.main.async {
-                    completion(image) // Возвращаем UIImage в главный поток
-                }
+                
+                completion(image) // Возвращаем UIImage в главный поток
+               
             }.resume()
         }
     
