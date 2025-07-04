@@ -20,8 +20,8 @@ class CoinMoneyMainViewModel: ObservableObject {
     // MARK: fetchItems()
 
     func fetchItems() {
+        
         coinFetch.fetchTopCoins(page: page, per_page: per_page) { coins in
-
             for coin in coins {
                 guard let imageURL = coin.image else {
                     DispatchQueue.main.async {
@@ -38,5 +38,7 @@ class CoinMoneyMainViewModel: ObservableObject {
                 }
             }
         }
+        
+        
     }
 }

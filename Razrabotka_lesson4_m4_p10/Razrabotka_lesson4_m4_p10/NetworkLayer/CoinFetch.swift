@@ -20,8 +20,8 @@ class CoinFetch {
         components.queryItems = [
             URLQueryItem(name: "vs_currency", value: "usd"),
             URLQueryItem(name: "order", value: "market_cap_desc"),
-            URLQueryItem(name: "per_page", value: "10"),
-            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "per_page", value: "\(per_page)"),
+            URLQueryItem(name: "page", value: "\(page)"),
             URLQueryItem(name: "sparkline", value: "false"),
         ]
 

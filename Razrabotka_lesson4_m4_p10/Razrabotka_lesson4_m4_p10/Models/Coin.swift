@@ -10,7 +10,7 @@ import Foundation
 struct Coin: Identifiable, Codable {
     //var id: String = UUID().uuidString
     
-    let id: String?
+    var id: String?
     let name: String?
     let symbol: String?
     let current_price: Double?
