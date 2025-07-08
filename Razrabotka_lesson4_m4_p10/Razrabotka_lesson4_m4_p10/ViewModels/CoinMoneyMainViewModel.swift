@@ -13,6 +13,7 @@ class CoinMoneyMainViewModel: ObservableObject {
     @Published var page = 1
     @Published var per_page = 10
     @Published var isLoading = false
+    @Published var isLoadingNextPage = false
     
     var coinFetch = CoinFetch()
     var coinImage = CoinImageLoader()
@@ -21,7 +22,8 @@ class CoinMoneyMainViewModel: ObservableObject {
 
     func fetchItems() {
         
-        coinFetch.fetchTopCoins(page: page, per_page: per_page) { coins in
+        coinFetch.fetchTopCoins(page: page, per_page: per_page) { [weak self] coins in
+            guard let self else { return }
             for coin in coins {
                 guard let imageURL = coin.image else {
                     DispatchQueue.main.async {
@@ -37,8 +39,18 @@ class CoinMoneyMainViewModel: ObservableObject {
                     }
                 }
             }
+            DispatchQueue.main.async { [weak self] in
+                self?.isLoadingNextPage = false
+                self?.isLoading = false
+            }
         }
         
         
+    }
+    
+    func loadNextPage() {
+        page += 1
+        isLoadingNextPage = true
+        fetchItems()
     }
 }

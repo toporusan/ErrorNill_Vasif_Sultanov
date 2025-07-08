@@ -20,10 +20,13 @@ struct CoinMoneyMainView: View {
 
                         CoinCellView(coinCell: coin)
                             .onAppear {
-                                if coin.coin.id == viewModel.items.last?.coin.id{
-                                    
+                                if coin.coin.id == viewModel.items.last?.coin.id {
+                                    viewModel.loadNextPage()
                                 }
                             }
+                    }
+                    if viewModel.isLoadingNextPage {
+                        ProgressView()
                     }
                 }
             }
